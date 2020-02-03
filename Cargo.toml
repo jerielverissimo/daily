@@ -9,3 +9,4 @@ edition = "2018"
 [dependencies]
 tui = "0.8.0"
 termion = "1.5.5"
+unicode-width = "0.1.7"

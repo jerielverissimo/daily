@@ -1,15 +1,17 @@
+use crate::list::ListState;
+
 #[derive(Debug, PartialEq)]
-enum InputMode {
+pub enum InputMode {
     Normal,
     Insert,
     Command,
 }
 
 pub struct App<'a> {
+    pub input: String,
+    pub input_mode: InputMode,
     title: &'a str,
-    input: String,
-    input_mode: InputMode,
-    tasks: Vec<String>,
+    tasks: ListState<String>,
 }
 
 impl<'a> App<'a> {
@@ -18,8 +20,12 @@ impl<'a> App<'a> {
             title,
             input: String::new(),
             input_mode: InputMode::Normal,
-            tasks: Vec::new(),
+            tasks: ListState::new(Vec::new()),
         }
+    }
+
+    pub fn tasks(&self) -> ListState<String> {
+        self.tasks.clone()
     }
 }
 
